@@ -1,0 +1,52 @@
+html {
+    padding: 0;
+    margin: 0;
+    font-size: 0.8em;
+    /*font-style: italic;*/
+    width: 100%;
+  }
+  #playground-controll table td {
+    width: 40px;
+    height: 40px;
+    border: solid 1px black;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .playerRed {
+    background: url(https://st.depositphotos.com/1616496/2087/i/450/depositphotos_20873587-stock-photo-red-capsule.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .playerBlue {
+    background: url(https://i.pinimg.com/originals/d7/0b/63/d70b639b62b44ab09b27432130135e85.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .choosingPlayer {
+    height: 30px;
+    width: 30px;
+  }
+  
+  .choosingPlayer.BLUE {
+    background: url(https://i.pinimg.com/originals/d7/0b/63/d70b639b62b44ab09b27432130135e85.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .choosingPlayer.RED {
+    background: url(https://st.depositphotos.com/1616496/2087/i/450/depositphotos_20873587-stock-photo-red-capsule.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .v-error-text {
+    color: red;
+    height: 20px;
+    font-size: 12px;
+    margin-top: 5px;
+  }

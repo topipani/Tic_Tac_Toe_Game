@@ -1,0 +1,27 @@
+/***************************
+****************************
+Reset
+****************************
+***************************/
+
+/* Change all elements to use border-box */
+
+
+/***************************
+****************************
+Base Styles
+****************************
+***************************/
+
+html {
+  font-family: $matrix;
+  color: $text-color;
+  font-size: $basicFont;
+  height: 100%;
+}
+
+body {
+  background-color: $black;
+  height: 100%;
+}
+

@@ -1,0 +1,109 @@
+/***************************
+****************************
+Intro text's Styles
+****************************
+***************************/
+
+.typewriter-content {
+    height: 100%;
+}
+
+.typewriter {
+    color: $green;
+    font-family: $matrix;
+    font-weight: bold;
+    font-size: 2em;
+    text-shadow: -1px 0 $greenDark, 0 1px $greenDark, 1px 0 $greenDark, 0 -1px $greenDark;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid $green; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 10em 0 0 2em; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+    animation: 
+    typing 3.5s steps(20, end),
+    blink-caret .6s step-end infinite;
+    width: fit-content;
+}
+
+/* The typing effect */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 35% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: white }
+}
+
+.typewriter-content input,
+.typewriter-content input:focus,
+.typewriter-content input:hover,
+.typewriter-content input:checked {
+    background-color: black;
+    border: none;
+    color: transparent;text-shadow: 0 0 0 white;;
+    text-transform: uppercase;
+    text-align: right;
+    max-width: 1em;
+    padding-right: 0.3em;
+    outline:0;
+}
+
+#name-1,
+#name-1:focus,
+#name-1:hover,
+#name-1:checked,
+#name-2,
+#name-2:focus,
+#name-2:hover,
+#name-2:checked {
+    max-width: 5em;
+}
+
+#side-chooser-container {
+    position: fixed;
+    height: 100%;
+}
+#q {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+.player-chooser  {
+    position: fixed;
+    top: 35%;
+    width: 1.5em;
+    height: 6em;
+    opacity: 0.5;
+    border: 1px solid black;
+    border-radius: 6em;
+    padding: 1em;
+}
+#button-red {
+    transform: rotate(45deg);
+    right: 25%;
+    opacity: 1;
+    animation : example-red 5000s infinite;
+    -webkit-animation: example-red 10s 1;
+    background-color: rgb(138, 45, 45);
+    /* 
+    -webkit-animation-name: example-red;
+    -webkit-animation-duration: 4s */
+}
+#button-blue {
+    background-color: rgb(73, 73, 155);
+    transform: rotate(125deg);
+    left: 25%;
+}
+
+@keyframes example-red {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes example-blue {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
