@@ -41,7 +41,7 @@ Intro text's Styles
 .typewriter-content input:focus,
 .typewriter-content input:hover,
 .typewriter-content input:checked {
-    background-color: black;
+    background-color: transparent;
     border: none;
     color: transparent;text-shadow: 0 0 0 white;;
     text-transform: uppercase;
@@ -65,11 +65,13 @@ Intro text's Styles
 #side-chooser-container {
     position: fixed;
     height: 100%;
+    width: 100%;
 }
 #q {
     position: fixed;
     height: 100%;
     width: 100%;
+    opacity: 0.6;
 }
 .player-chooser  {
     position: fixed;
@@ -106,4 +108,34 @@ Intro text's Styles
 @keyframes example-blue {
     0%   { opacity: 0; }
     100% { opacity: 1; }
+}
+
+.hands {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    background: url('../img/hands.jpg') no-repeat center center fixed;
+    background-size: cover;
+    z-index: -2;
+    filter: blur(2px);
+    transform: scale(1.1);
+
+}
+
+
+#side-chooser-container {
+    a {
+        display: block;
+        position: fixed;
+        background-color: transparent;
+        height: 100vh;
+        width: 50%;
+    }
+    .red {
+        left: 0;
+    }
+    .blue {
+        right: 0;
+        background-color: transparent;
+    }
 }

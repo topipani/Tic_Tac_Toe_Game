@@ -481,7 +481,7 @@ Intro text's Styles
 .typewriter-content input:focus,
 .typewriter-content input:hover,
 .typewriter-content input:checked {
-  background-color: black;
+  background-color: transparent;
   border: none;
   color: transparent;
   text-shadow: 0 0 0 white;
@@ -503,12 +503,14 @@ Intro text's Styles
 
 #side-chooser-container {
   position: fixed;
-  height: 100%; }
+  height: 100%;
+  width: 100%; }
 
 #q {
   position: fixed;
   height: 100%;
-  width: 100%; }
+  width: 100%;
+  opacity: 0.6; }
 
 .player-chooser {
   position: fixed;
@@ -548,7 +550,26 @@ Intro text's Styles
   100% {
     opacity: 1; } }
 
-/* @keyframes example(rgb(0,0,0)) {
-    from {background-color: transparent;}
-    to {background-color: $color;}
-} */
+.hands {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  background: url("../img/hands.jpg") no-repeat center center fixed;
+  background-size: cover;
+  z-index: -2;
+  filter: blur(2px);
+  transform: scale(1.1); }
+
+#side-chooser-container a {
+  display: block;
+  position: fixed;
+  background-color: transparent;
+  height: 100vh;
+  width: 50%; }
+
+#side-chooser-container .red {
+  left: 0; }
+
+#side-chooser-container .blue {
+  right: 0;
+  background-color: transparent; }
