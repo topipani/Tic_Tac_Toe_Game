@@ -5,16 +5,39 @@
         <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="js/game-setup.js"></script>
         <script src="js/load.js"></script>
         <script src="js/intro.js"></script>
-        <script src="js/game-setup.js"></script>
     </head>
-    <body onload="matrixScreen()">
-        <div id="side-chooser-container">
+    <body>
+       <!--  <div id="side-chooser-container">
             <canvas id="q"></canvas>
             <div class="hands"></div>
-            <a href="#" class="red"></a>
-            <a href="#" class="blue"></a>
+            <a href="#" id="red" class="player"></a>
+            <a href="#" id="blue" class="player"></a>
+        </div> -->
+        <div id="playground-container">
+            <table class="playground">
+                <tr>
+                    <td>1-td1</td>
+                    <td>1-td2</td>
+                    <td>1-td3</td>
+                </tr>
+                <tr>
+                    <td>2-td1</td>
+                    <td>2-td2</td>
+                    <td>2-td3</td>
+                </tr>
+                <tr>
+                    <td>3-td1</td>
+                    <td>3-td2</td>
+                    <td>3-td3</td>
+                </tr>        
+            </table>
+        </div>
+        <div class="info-window">
+            <p id="info"></p>
+            <button id="info-ok">New game!</button>
         </div>
     </body>
 </html>

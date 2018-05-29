@@ -104,3 +104,13 @@ matrixScreen = () => {
     };
     setInterval(draw, 33);
 }
+
+let saveChoosenPlayer = (e) => {
+    props.player = e.currentTarget.id;
+    $('.player').unbind('click');
+    openPlayground();
+}
+
+let openPlayground = () => {
+    handleElementHide($('#side-chooser-container'), $('#playground-container'));
+}
