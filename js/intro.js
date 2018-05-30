@@ -113,4 +113,7 @@ let saveChoosenPlayer = (e) => {
 
 let openPlayground = () => {
     handleElementHide($('#side-chooser-container'), $('#playground-container'));
+    if (props.bot) {
+        botMove();
+    }
 }

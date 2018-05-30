@@ -114,9 +114,13 @@ let checkStraights = (arr, posProp) => {
     return win;
 }
 
+let allPos = () => {
+    return $('.playground td').map((i, e) => { return getPos($(e)) });
+}
 let getMaxPos = (arr) => {
-    let arrPos = arr.map((i, e) => { return getPos($(e)) });
-    return sortByObjProp(arrPos, 'top')[arrPos.length - 1].top;
+    //let arrPos = arr.map((i, e) => { return getPos($(e)) });
+    //return sortByObjProp(arrPos, 'top')[arrPos.length - 1].top;
+    return sortByObjProp(allPos(), 'top')[allPos().length - 1].top;
 }
 
 let checkDiagonal = (arr, prop, prop2) => {
