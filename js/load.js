@@ -1,7 +1,6 @@
-import '../node_modules/@types/jquery/index';
+//import '../node_modules/@types/jquery/index';
 
 $(document).ready(function () {
-/*
     introStartSetTime();
     $('.player').click(saveChoosenPlayer);
 
@@ -11,10 +10,9 @@ $(document).ready(function () {
     });
 
     document.querySelector("#playground-container td").addEventListener("click", clickResolve);
-    clickready.then(cucc);
-*/
-    introStartSetTime();    
+    introStartSetTime();
+
     $('.player').click(saveChoosenPlayer);
-    $("#playground-container td").click(stepConstructor);
+    $("#playground-container td").off("click").on('click', stepConstructor);
     $('#info-ok').click(newGame);
 });

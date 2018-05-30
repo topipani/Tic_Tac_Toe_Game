@@ -1,4 +1,4 @@
-import '../node_modules/@types/jquery/index.d';
+//import './node_modules/@types/jquery/index.d';
 
 let props = {
     playerNum: 1,
@@ -17,7 +17,6 @@ let steps = {
 
 let nextPlayer = () => {
     player = (player == 'red') ? 'blue' : 'red';
-    /* console.log('2'); */
 }
 
 let getPos = ($element) => {
@@ -34,53 +33,63 @@ let drawStep = ($currElement, currPlayer) => {
     $currElement.addClass(currPlayer);
 }
 
-/* let step = (e, callback) => {
-    let $clicked = $(e.currentTarget);
-    steps[player].push(getPos($clicked));
-    $clicked.unbind('click');
-    drawStep($clicked, player);
-
-    //   setTimeout(function() {
-    //      console.log('1')
-      },500) 
-    callback();
-}
- */
-
 const step = (e) => {
-    return new Promise((resolve, reject) => {
-        console.log(steps);
+    let promise = new Promise((resolve, reject) => {
         let $clicked = $(e.currentTarget);
-        if (!$clicked.hasClass('red') || !$clicked.hasClass('red')) {
-            steps[player].push(getPos($clicked));
-        }
-        $clicked.unbind('click');
+        steps[player].push(getPos($clicked));
         drawStep($clicked, player);
-        resolve();
+        $clicked.off('click');
+        resolve(true);
     });
+    return promise;
 };
 
-let stepConstructor = (e, callback) => {
-    step(e).then(checkWin).then(nextPlayer);
+let stepConstructor = (e) => {
+    //TODO: nincs lekezelve, ha nyert (checkWin true-val ter vissza, a kovetkezo utani then-nel mi legyen, most nextPlayer kovetkezik)
+    step(e)
+        .then((r) => { return checkWin(); })
+        .then((r) => {
+            if (r) {
+                end(player, 'win');
+            } else {
+                return checkEqual();
+            }
+        })
+        .then((r) => {
+            if (r) {
+                end(player, 'equal');
+            } else {
+                nextPlayer();
+            }
+        });
+}
+let checkEqual = () => {
+    let promise = new Promise((resolve, reject) => {
+        return resolve(steps.blue.concat(steps.red).length === $('.playground td').length);
+    });
+    return promise;
 }
 
 let checkWin = () => {
-    console.log(steps);
-    let currPlayerSteps = steps[player];
-    if (currPlayerSteps.length < 3) {
-        return;
-    } else {
-        let posProps = ['top', 'left'];
-        posProps.forEach((prop) => {
-            let sortedArr = sortByObjProp(currPlayerSteps, prop);
-            if (checkStraights(sortedArr, prop)) {
-                winConstructor(player);
+    let promise = new Promise((resolve, reject) => {
+        let currPlayerSteps = steps[player];
+        if (currPlayerSteps.length < 3) {
+            return resolve(false);
+        } else {
+            let posProps = ['top', 'left'];
+            posProps.forEach((prop) => {
+                let sortedArr = sortByObjProp(currPlayerSteps, prop);
+                if (checkStraights(sortedArr, prop)) {
+                    resolve(true);
+                }
+            });
+            if (checkDiagonal(sortByObjProp(currPlayerSteps, 'top'), 'top', 'left')) {
+                resolve(true);
             }
-        });
-        if (checkDiagonal(sortByObjProp(currPlayerSteps, 'top'), 'top', 'left')) {
-            winConstructor(player);
         }
-    }
+        resolve(false);
+    });
+    return promise;
 }
 
 let sortByObjProp = (arr, prop) => {
@@ -99,21 +108,28 @@ let checkStraights = (arr, posProp) => {
             win = isWinner(win, checklist);
         } else {
             checklist = [];
+            checklist.push(arr[i]);
         }
     });
     return win;
 }
 
+let getMaxPos = (arr) => {
+    let arrPos = arr.map((i, e) => { return getPos($(e)) });
+    return sortByObjProp(arrPos, 'top')[arrPos.length - 1].top;
+}
+
 let checkDiagonal = (arr, prop, prop2) => {
+    let maxPos = getMaxPos($('td'));
     let checklistA = [];
     let checklistB = [];
     let win = false;
     arr.forEach((el, i, arr) => {
-        if (i == 0 || (el[prop] !== arr[i - 1][prop] && el[prop] == el[prop2])) {
+        if (i === 0 || (el[prop] !== arr[i - 1][prop] && el[prop] === el[prop2])) {
             checklistA.push(el);
             win = isWinner(win, checklistA);
         }
-        if (i == 0 || el[prop] + el[prop2] == arr[2][prop]) {
+        if (el[prop] + el[prop2] === maxPos) {
             checklistB.push(el);
             win = isWinner(win, checklistB);
         }
@@ -134,15 +150,23 @@ let winConstructor = (player) => {
     $('#info').addClass('info');
     $('.info-window').show();
 }
-
+let end = (player, type) => {
+    let text;
+    if (type == 'equal') {
+        text = 'It\'s a draw!';
+    } else if (type == 'win' ) {
+        text = 'You won ' + player;
+    }
+    $('#info').text(text);
+    $('#info').addClass('info');
+    $('.info-window').show();
+}
 
 let newGame = () => {
     $("#playground-container td").removeClass();
-    $("#playground-container td").click(stepConstructor);
+    $("#playground-container td").off("click").on('click', stepConstructor);
     $('.info-window').hide();
     steps.red = [];
     steps.blue = [];
     player = 'red';
-    console.log('----------------clear----------------');
-    console.log(steps)
 }
